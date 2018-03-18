@@ -1,0 +1,243 @@
+#include<stdio.h>
+//#include<conio.h>
+
+void fork_3()
+{
+	int i,j,k;
+	i=fork();
+	j=fork();
+	if(i!=0 || j!=0)
+		k=fork();
+	
+	if(i!=0 && j!=0 && k!=0)
+	{
+		printf("A\n");
+		exit(1);
+	}	
+	else if(i!=0 && j!=0 && k==0)
+	{	
+		printf("B\n");
+		exit(1);
+	}	
+	else if(i!=0 && j==0 && k!=0)
+	{	
+		printf("D\n");
+		exit(1);
+	}	
+	else if(i!=0 && j==0 && k==0)
+	{	
+		printf("G\n");
+		exit(1);
+	}	
+	else if(i==0 && j!=0 && k!=0)
+	{	
+		printf("C\n");
+		exit(1);
+	}	
+	else if(i==0 && j!=0 && k==0)
+	{	
+		printf("F\n");
+		exit(1);
+	}	
+	else if(i==0 && j==0 /*&& k==0*/)
+	{	
+		printf("E\n");
+		exit(1);
+	}
+
+}
+
+void fork_4()
+{
+	//printf("Hii");
+	int i,j,k,l;
+	i=fork();
+	if(i!=0)
+	{
+		j=fork();
+		k=fork();
+		if((j!=0 && k==0)||(j==0 && k!=0))
+			l = fork();
+	}
+
+
+	if(i!=0 && j!=0 && k!=0)
+	{
+		printf("A\n");
+		exit(1);
+	}	
+	else if(i!=0 && j!=0 && k==0 && l!=0)
+	{	
+		printf("D\n");
+		exit(1);
+	}	
+	else if(i!=0 && j!=0 && k==0 && l==0)
+	{	
+		printf("G\n");
+		exit(1);
+	}	
+	else if(i!=0 && j==0 && k!=0 && l!=0)
+	{	
+		printf("C\n");
+		exit(1);
+	}	
+	else if(i!=0 && j==0 && k!=0 && l==0)
+	{	
+		printf("F\n");
+		exit(1);
+	}	
+	else if(i!=0 && j==0 && k==0)
+	{	
+		printf("E\n");
+		exit(1);
+	}	
+	else if(i==0)
+	{	
+		printf("B\n");
+		exit(1);
+	}
+}
+
+void fork_5()
+{
+	int i,j,k,l,m;
+	i=fork();
+	j=fork();
+	if(i!=0 && j!=0)
+	{
+		k=fork();
+		if(k==0)
+		{
+			l=fork();
+			if(l!=0)
+				m=fork();
+		}
+	}
+
+
+	if(i!=0 && j!=0 && k!=0)
+	{
+		printf("A\n");
+		exit(1);
+	}	
+	else if(i!=0 && j!=0 && k==0 && l!=0 && m!=0)
+	{	
+		printf("C\n");
+		exit(1);
+	}	
+	else if(i!=0 && j!=0 && k==0 && l!=0 && m==0)
+	{	
+		printf("F\n");
+		exit(1);
+	}	
+	else if(i!=0 && j!=0 && k==0 && l==0)
+	{	
+		printf("E\n");
+		exit(1);
+	}	
+	else if(i!=0 && j==0)
+	{	
+		printf("B\n");
+		exit(1);
+	}	
+	else if(i==0 && j!=0)
+	{	
+		printf("D\n");
+		exit(1);
+	}	
+	else if(i==0 && j==0)
+	{	
+		printf("G\n");
+		exit(1);
+	}
+}
+
+void fork_6()
+{
+	int i,j,k,l,m,n;
+	i=fork();
+	j=fork();
+	if(i!=0 && j!=0)
+	{
+		k=fork();
+		if(k==0)
+		{
+			l=fork();
+			if(l!=0)
+				m=fork();
+		}
+	}
+
+
+	if(i!=0 && j!=0 && k!=0)
+	{
+		printf("A\n");
+		exit(1);
+	}	
+	else if(i!=0 && j!=0 && k==0 && l!=0 && m!=0)
+	{	
+		printf("C\n");
+		exit(1);
+	}	
+	else if(i!=0 && j!=0 && k==0 && l!=0 && m==0)
+	{	
+		printf("F\n");
+		exit(1);
+	}	
+	else if(i!=0 && j!=0 && k==0 && l==0)
+	{	
+		printf("E\n");
+		exit(1);
+	}	
+	else if(i!=0 && j==0)
+	{	
+		printf("B\n");
+		exit(1);
+	}	
+	else if(i==0 && j!=0)
+	{	
+		printf("D\n");
+		exit(1);
+	}	
+	else if(i==0 && j==0)
+	{	
+		printf("G\n");
+		exit(1);
+	}
+	
+}
+
+void main()
+{
+	int i;
+	printf("Enter the number of fork used (between 3 to 6) :");
+	scanf("%d",&i);
+	switch(i)
+	{
+		case 3:
+		{
+			fork_3();
+			break;
+		}
+		case 4:
+		{
+			fork_4();
+			break;
+		}		
+		case 5:
+		{
+			fork_5();
+			break;
+		}		
+		case 6:
+		{
+			fork_6();
+			break;
+		}
+		default:
+			printf("You have enterd the wrong number.");
+	}
+	return ;
+}
+
+

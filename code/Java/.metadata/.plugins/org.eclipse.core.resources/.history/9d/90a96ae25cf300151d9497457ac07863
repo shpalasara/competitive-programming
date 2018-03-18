@@ -1,0 +1,33 @@
+package March_16_LunchTime;
+
+import java.util.*;
+
+public class ABABAABA {
+
+	public static void main(String[] args){
+		
+		Scanner sc = new Scanner(System.in);
+		int T=Integer.parseInt(sc.nextLine()),index,length,a,b;
+		String str;
+		
+		while(T-->0)
+		{
+			a=0;
+			b=0;
+			
+			index=-1;
+			str=sc.nextLine();
+			length=str.length();
+			
+			for(int i=0;i<length;i++)
+			{
+				if(str.charAt(i)=='A')
+					a++;
+				else
+					b++;
+				
+			}
+		}
+		sc.close();
+	}
+}

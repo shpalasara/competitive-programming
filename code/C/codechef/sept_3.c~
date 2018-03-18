@@ -1,0 +1,50 @@
+#include<stdio.h>
+
+double _ans=1000000000.0;
+
+double power(int degree,double p)
+{
+	double ans;
+	if(degree==1)
+		return p;
+	if(degree%2==0)
+	{
+		ans=power(degree/2,p);
+		return ans*ans;
+	}
+
+	ans=power(degree/2,p);
+	return ans*ans*p;
+	
+}
+
+int main()
+{
+	int T,M;
+	double p;
+	scanf("%d",&T);
+	while(T--)
+	{
+		scanf("%d %lf",&M,&p);
+		if(M==1)
+			printf("%lf 0.00\n",ans);
+		else if(p<=0.5)
+		{
+			printf("%lf %lf\n",ans*0.5,ans*0.5);
+		}
+		else
+		{
+			double p_m=power(p,M-1);
+			if(p_m<=0.5)
+				printf("%lf %lf\n",ans*0.5,ans*0.5);
+			else
+			{
+				if(M%2==0)
+					printf("%lf %lf\n",(ans-ans*p_m),ans*p_m);
+				else
+					printf("%lf %lf\n",ans*p_m,(ans-ans*p_m));
+			}
+		}
+	}
+	return 0;
+}

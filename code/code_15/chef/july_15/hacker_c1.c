@@ -1,0 +1,103 @@
+#include<stdio.h>
+
+/*void quicksort(int* x,int first,int last){
+    int pivot,j,temp,i;
+
+     if(first<last){
+         pivot=first;
+         i=first;
+         j=last;
+
+         while(i<j){
+             while(x[i]<=x[pivot]&&i<last)
+                 i++;
+             while(x[j]>x[pivot])
+                 j--;
+             if(i<j){
+                 temp=x[i];
+                  x[i]=x[j];
+                  x[j]=temp;
+             }
+         }
+
+         temp=x[pivot];
+         x[pivot]=x[j];
+         x[j]=temp;
+         quicksort(x,first,j-1);
+         quicksort(x,j+1,last);
+
+    }
+}*/
+
+void swap(int* a, int* b)
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+ 
+/* This function takes last element as pivot, places the pivot element at its
+   correct position in sorted array, and places all smaller (smaller than pivot)
+   to left of pivot and all greater elements to right of pivot */
+int partition (int arr[], int l, int h)
+{
+    int x = arr[h];    // pivot
+    int j,i = (l - 1);  // Index of smaller element
+ 
+    for (j = l; j <= h- 1; j++)
+    {
+        // If current element is smaller than or equal to pivot
+        if (arr[j] <= x)
+        {
+            i++;    // increment index of smaller element
+            swap(&arr[i], &arr[j]);  // Swap current element with index
+        }
+    }
+    swap(&arr[i + 1], &arr[h]); 
+    return (i + 1);
+}
+ 
+/* arr[] --> Array to be sorted, l  --> Starting index, h  --> Ending index */
+void quickSort(int arr[], int l, int h)
+{
+    if (l < h)
+    {
+        int p = partition(arr, l, h); /* Partitioning index */
+        quickSort(arr, l, p - 1);
+        quickSort(arr, p + 1, h);
+    }
+}
+
+int main()
+{
+	int N,K,i,prev=0,ans=0;
+	scanf("%d %d",&N,&K);
+	int data[K];
+	for(i=0;i<K;i++)
+		scanf("%d",&data[i]);
+	
+	quickSort(data,0,K-1);
+
+	prev=data[0];
+	if(data[0]>2)
+		ans+=(data[0]-1)/2;
+	//printf("%d %d\n",data[0],ans);	
+
+	for(i=1;i<K;i++)
+	{
+		//printf("%d ",data[i]);
+		if(data[i]>prev+3 && data[i]-prev-2>0)
+		{
+			
+			ans+=((data[i]-prev-2)/2);
+		}		
+	//printf("%d\n",ans);
+		prev=data[i];
+	}
+
+	if(N>data[K-1]+1)
+		ans+=(N-data[K-1])/2;
+	ans+=K;
+	printf("%d\n",ans);
+	return 0;
+}

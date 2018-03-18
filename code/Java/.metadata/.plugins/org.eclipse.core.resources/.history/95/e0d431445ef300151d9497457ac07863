@@ -1,0 +1,48 @@
+package March_16_LunchTime;
+
+import java.util.*;
+
+public class ABABAABA {
+
+	public static void main(String[] args){
+		
+		Scanner sc = new Scanner(System.in);
+		int T=Integer.parseInt(sc.nextLine()),index,length,a,b;
+		String str,ans;
+		int[] count_a = new int[5001];
+		int[] count_b = new int[5001];
+		
+		while(T-->0)
+		{
+			a=0;
+			b=0;
+			
+			index=-1;
+			str=sc.nextLine();
+			length=str.length();
+			
+			for(int i=0;i<length && index==-1;i++)
+			{
+				if(str.charAt(i)=='A')
+					a++;
+				else
+					b++;
+				
+				if(i+1<length && str.charAt(i)==str.charAt(i+1) && (i+2>=length || str.charAt(i)==str.charAt(i+2)))
+					index=i;
+			}
+			
+			if(index!=-1)
+			{
+				ans=str.substring(0, index)+str.substring(index+1);
+				System.out.println(ans);
+			}
+			else
+			{
+				if(a==2 || b==2)
+			}
+			
+		}
+		sc.close();
+	}
+}

@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class metrix_rotation {
+
+	public static void main(String[] args){
+		
+		Scanner sc = new Scanner(System.in);
+		int N,M,R;
+		N=sc.nextInt();
+		M=sc.nextInt();
+		R=sc.nextInt();
+		int[][] metrix = new int[N][M];
+		
+		sc.close();
+	}
+}

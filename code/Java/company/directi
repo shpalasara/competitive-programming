@@ -1,0 +1,89 @@
+public class Data {
+
+}
+
+public class str_data extends Data {
+
+    String str;
+}
+
+public class hm_data extends Data {
+
+    HashMap<String , Data > hm = new HashMap<String , Data>();
+}
+
+public class parse_jason {
+
+    public HashMap<String , Data> parse(String json_file) {
+    
+         int i=0,i_s,i_e;
+         
+         HashMap<String , Data> hm = new HashMap<String , Data>();
+         
+         while(json_file.charAt(i)!='{' && i<json_file.length())
+             i++;
+        
+         for(;i<json_file.length();i++)
+         {
+               while(i<json_file.length() && json_file.charAt(i)!='"')
+                   i++;
+               
+               i_s = ++i;
+               
+               while(i<json_file.length() && json_file.charAt(i)!='"')
+                   i++;
+               
+               i_e = i++;    
+               
+               String propery = json_file.substring(i_s,i_e);
+               Data d1;
+               
+               while(i<json_file.length() && json_file.charAt(i)!=':')
+                   i++;
+               
+               while(i<json_file.length() && (json_file.charAt(i)!='{' || json_file.charAt(i)!='"'))
+               {
+                   i++;
+               }
+               
+               if(json_file.charAt(i)=='{')
+               {
+                   i_s = i;
+                   
+                   while(i<json_file.length() && json_file.charAt(i)!='}')
+                       i++;
+                   
+                   i_e = ++i;
+                   
+                   String json_temp = json_file.substring(i_s, i_e);
+                   
+                   d1 = new hm_data();
+                   
+                   d1.hm =  parse(json_temp);
+                   
+                   hm.add(property , d1);
+               }
+               else
+               {
+                   i_s = ++i;
+                   
+                   while(json_file.charAt(i)!='"')
+                       i++;
+                   i_e = i;   
+                   
+                   d1 = new str_data();
+                   d1.str = json_file.substring(i_s,i_e);
+                   
+                   hm.put(property , d1);
+               }
+               
+               while(i<json_file.length() && json_file.charAt(i)!=',' || json_file.charAt(i)!='}')
+                   i++;
+               
+				if(json_file.charAt(i)=='}')
+					break;
+         } 
+         
+         return hm;
+    }
+}

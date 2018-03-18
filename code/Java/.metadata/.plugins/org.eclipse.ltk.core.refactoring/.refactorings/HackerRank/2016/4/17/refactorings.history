@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;hack_101.Larry_Array.java&apos; to &apos;Larry_Array_March_2016.java&apos;&#x0A;- Original project: &apos;hackerrank_1&apos;&#x0A;- Original element: &apos;hack_101.Larry_Array.java&apos;&#x0A;- Renamed element: &apos;hack_101.Larry_Array_March_2016.java&apos;" description="Rename compilation unit &apos;Larry_Array.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;hack_101{Larry_Array.java" name="Larry_Array_March_2016.java" references="false" stamp="1461150170052" version="1.0"/>
+</session>

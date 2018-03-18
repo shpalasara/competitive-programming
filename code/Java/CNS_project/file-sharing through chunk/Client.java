@@ -1,0 +1,118 @@
+import java.io.*;
+import java.net.Socket;
+
+public class Client {
+    private Socket socket = null;
+    private ObjectOutputStream outputStream = null;
+    private boolean isConnected = false;
+    private String sourceFilePath = "/home/shalin/Videos/Hosanna.avi";
+    private FileEvent fileEvent = null;
+    private String destinationPath = "/home/neo123001/Videos/";
+
+    public Client() {
+
+    }
+
+    /**
+     * Connect with server code running in local host or in any other host
+     */
+    public void connect() {
+        while (!isConnected) {
+            try {
+                socket = new Socket("10.100.90.41", 3338);
+                outputStream = new ObjectOutputStream(socket.getOutputStream());
+                isConnected = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Sending FileEvent object.
+     */
+    public void sendFile() {
+        //fileEvent = new FileEvent();
+        String fileName = sourceFilePath.substring(sourceFilePath.lastIndexOf("/") + 1, sourceFilePath.length());
+        String path = sourceFilePath.substring(0, sourceFilePath.lastIndexOf("/") + 1);
+        //fileEvent.setDestinationDirectory(destinationPath);
+        //fileEvent.setFilename(fileName);
+        //fileEvent.setSourceDirectory(sourceFilePath);
+        File file = new File(sourceFilePath);
+        if (file.isFile())
+	{
+			//DataInputStream diStream = new DataInputStream(new FileInputStream(file));
+		    	int partCounter = 1;
+
+			int sizeOfFiles = 1024 * 1024;// 1MB
+			byte[] buffer = new byte[sizeOfFiles];
+
+			try 
+			{
+				DataInputStream bis = new DataInputStream(new FileInputStream(file));
+		    		//String name = file.getName();
+				
+		    		int tmp = 0;
+		    		while ((tmp = bis.read(buffer)) > 0)
+				{
+				
+					fileEvent = new FileEvent();
+					fileEvent.setDestinationDirectory(destinationPath);
+        				fileEvent.setFilename(fileName);
+        				fileEvent.setSourceDirectory(sourceFilePath);
+		        		//write each chunk of data into separate file with different number in name
+		        		//File newFile = new File(f.getParent(), name + "."+ String.format("%03d", partCounter++));
+					fileEvent.setFileSize(tmp);
+					fileEvent.setFileData(buffer);
+                			fileEvent.setStatus("Success");
+					//try (FileOutputStream out = new FileOutputStream(newFile))
+					//{
+					try
+					{
+						outputStream.writeObject(fileEvent);
+						System.out.println("Done...Going to exit");
+            					Thread.sleep(3000);
+            					System.exit(0);
+				    		//out.write(buffer, 0, tmp);//tmp is chunk size
+		        		//}
+					}
+					catch (IOException e) {
+            					e.printStackTrace();
+        				} catch (InterruptedException e) {
+            					e.printStackTrace();
+        				}
+		    		}
+
+            		}
+			catch (Exception e)
+			{
+		                e.printStackTrace();
+		                fileEvent.setStatus("Error");
+		        }
+        }
+	else
+	{
+            System.out.println("path specified is not pointing to a file");
+            fileEvent.setStatus("Error");
+        }
+        //Now writing the FileEvent object to socket
+        /*try {
+            //outputStream.writeObject(fileEvent);
+            System.out.println("Done...Going to exit");
+            Thread.sleep(3000);
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+
+    }
+
+    public static void main(String[] args) {
+        Client client = new Client();
+        client.connect();
+        client.sendFile();
+    }
+}
+

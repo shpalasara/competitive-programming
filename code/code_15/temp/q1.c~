@@ -1,0 +1,52 @@
+#include<stdio.h>
+
+int main()
+{
+	int i=5,x,y;
+	int a[30];			//a[0],a[1],a[2]
+	//clrscr();
+	printf("Enter a number from 1 to 7 :");
+	scanf("%d",&x);
+	x=10;
+	while(x>0)
+	{
+		x--;
+	}
+	for(x=10;x>0;x--);
+	
+	
+	
+	switch(x)
+	{
+		case 1:
+			//printf("Sunday\n");
+			//break;
+		case 2:
+			//printf("Monday\n");
+			//break;
+		case 3:
+			printf("Tuesday\n");
+			break;
+		case 4:
+			printf("Wednesday\n");
+			break;
+		case 5:
+			printf("Thursday\n");
+			break;
+		case 6:
+			printf("Friday\n");
+			break;
+		case 7:
+			printf("Saturday\n");
+			break;
+		default:
+			printf("Wrong input\n");
+	}
+	return 0;
+}
+
+/*
+	float y;			%f
+	double z;			%lf
+
+*/ 

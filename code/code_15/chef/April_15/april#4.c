@@ -1,0 +1,43 @@
+#include<stdio.h>
+
+int main()
+{
+	int T;
+	scanf("%d",&T);
+	int N,L,R,i,j,k;
+	int ans=0;
+	for(i=0;i<T;i++)
+	{
+		scanf("%d %d %d",&N,&L,&R);
+		//printf("N is %d\n",N);
+		//printf("L is %d\n",L);
+		//printf("R is %d\n",R);
+		if(R>=L)
+		{
+			k = R-L+1;
+			ans=(N*k)%(1000000+3);
+			for(j=2;j<=N;j++)
+			{
+				ans = (ans+combination(k,j))%(1000000+3);
+			}
+		}
+		printf("%d\n",ans);
+		ans=0;
+	}
+	return 0;
+}
+
+int combination(int a,int b)
+{
+	double ans=1;
+	int i;
+	if(a==b)
+		return 1;
+	if(a-b<b)
+		b=a-b;
+	for(i=0;i<b;i++)
+		ans*=(a-i);
+	for(i=0;i<b;i++)
+		ans/=(i+1);
+	return (int)ans;
+}

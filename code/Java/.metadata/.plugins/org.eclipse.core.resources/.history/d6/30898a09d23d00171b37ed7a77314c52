@@ -1,0 +1,44 @@
+package SnackDown_17;
+
+import java.util.Scanner;
+
+public class SNAKPROC {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int r = Integer.parseInt(sc.nextLine()),l;
+		String str;
+		boolean check;
+		
+		while(r-->0)
+		{
+			check = true;
+			l = Integer.parseInt(sc.nextLine());
+			str = sc.nextLine();
+			int temp=0;
+			
+			for(int i=0;i<l && check;i++)
+			{
+				if(str.charAt(i)=='H')
+					temp++;
+				else if(str.charAt(i)=='T')
+					temp--;
+				if(temp!=0 && temp!=1)
+					check = false;
+			}
+			
+			
+			
+			if(check)
+				System.out.println("Valid");
+			else
+				System.out.println("Invalid");
+		}
+		sc.close();
+	}
+
+}

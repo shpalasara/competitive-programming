@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;weelk_of_code_30&apos; to &apos;week_of_code_30&apos;&#x0A;- Original project: &apos;HackerRank&apos;&#x0A;- Original element: &apos;HackerRank/src/weelk_of_code_30&apos;&#x0A;- Renamed element: &apos;HackerRank/src/week_of_code_30&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;weelk_of_code_30&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;weelk_of_code_30" name="week_of_code_30" qualified="false" references="true" stamp="1489576869763" textual="false" version="1.0"/>
+</session>

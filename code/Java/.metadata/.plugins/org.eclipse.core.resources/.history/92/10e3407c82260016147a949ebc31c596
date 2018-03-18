@@ -1,0 +1,13 @@
+package round_331_2;
+
+public class Wilbur_and_Array {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+	}
+
+}

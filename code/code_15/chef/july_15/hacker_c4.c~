@@ -1,0 +1,61 @@
+#include<stdio.h>
+
+int main()
+{
+	int N,i,days=0,count=0;
+	scanf("%d",&N);
+	long long int data[N],temp,prev,check;
+
+	scanf("%lld",&data[0]);
+	prev=data[0];
+	count++;
+	for(i=1;i<N;i++)
+	{
+		scanf("%lld",&temp);
+
+		if(temp>prev)
+		{
+			if(days==0)
+				days++;
+		}		
+		else
+			data[count++]=temp;
+		prev=temp;
+	}
+	int cut=0,j=0,random;
+	while(1)
+	{
+		cut=0;
+		check=days;
+		prev=data[j];
+		//printf("%lld ",data[0]);
+		temp=1;
+		for(i=j+1;i<count;i++)
+		{
+			//printf("%lld ",data[i]);
+			if(data[i]<=prev)
+			{
+				if(data[temp-1]<data[i])
+					cut=1;
+				data[temp++]=data[i];
+			}		
+			else
+			{
+				if(days==check)
+				{	
+					random=i-1;
+					days++;
+					temp=i;
+				}
+			}			
+			prev=data[i];	
+		}
+		//printf("\n");
+		if(days==check || cut==0 || temp<=1)
+			break;
+		j=random;
+		count=temp;
+	}
+	printf("%d\n",days);
+	return 0;
+}

@@ -1,0 +1,74 @@
+#include<stdio.h>
+
+int freq[65536];
+
+int main()
+{
+	int Q,temp,count=0,ans,i,j;
+	char str[10];
+	scanf("%d",&Q);
+	for(i=0;i<65536;i++)
+		freq[i]=0;
+	while(Q--)
+	{
+		ans=0;
+		scanf("%s %d",str,&temp);
+		if(str[0]=='a')
+			freq[temp]++;
+		else if(str[0]=='c')
+		{
+			int last_bit=temp/2,shift;
+			
+			if(temp%2!=0)
+			{
+				//printf("Even\n");
+				for(i=1;i<=temp;i+=1)
+				{
+					if((i&temp)==i)
+						ans+=freq[i];
+				}
+				ans+=freq[0];
+			}
+			else
+			{
+				for(i=last_bit;i>0;i--)
+				{
+					shift=1;
+					shift = shift<<i;
+					if(temp%shift==0)
+					{
+						for(j=1;j<=temp;j+=shift)
+						{
+							if((j&temp)==j)
+								ans+=freq[j];
+						}
+						ans+=freq[0];
+						break;	
+					}
+				}
+			}
+			/*for(i=0;i<count;i++)
+			{
+				if((array[i]&temp)==array[i])
+					ans++;		
+			}*/
+			printf("%d\n",ans);
+		}
+		else
+		{
+			freq[temp]--;
+			/*for(i=0;i<count-1;i++)
+			{
+				if(temp==array[i])
+				{
+					array[i]=array[i+1];
+					temp=-1;
+				}
+				if(temp==-1)
+					array[i]=array[i+1];
+			}
+			count--;*/
+		}
+	}
+	return 0;
+}

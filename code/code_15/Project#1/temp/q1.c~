@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+
+int main() {
+
+  int stat;
+  if (fork() == 0)
+     *(int *)NULL = 0;
+  else
+     wait(&stat);
+  if (WIFEXITED(stat))
+     printf("Exit status: %d\n", WEXITSTATUS(stat));
+  else if (WIFSIGNALED(stat))
+     psignal(WTERMSIG(stat), "Exit signal:::");
+  return 0;
+
+}

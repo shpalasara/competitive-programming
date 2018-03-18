@@ -1,0 +1,23 @@
+package round_359_2;
+
+import java.util.Scanner;
+
+public class Little_Robber_Girl_Zoo {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int n=sc.nextInt();
+		int[] data = new int[n];
+		
+		for(int i=0;i<n;i++)
+		{
+			data[i] = sc.nextInt();
+		}
+		sc.close();
+	}
+
+}

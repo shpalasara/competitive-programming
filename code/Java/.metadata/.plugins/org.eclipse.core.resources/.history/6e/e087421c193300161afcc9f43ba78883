@@ -1,0 +1,36 @@
+package placement_drive;
+
+import java.util.Scanner;
+
+public class T01_Q01 {
+
+	/**
+	 * @param args
+	 */
+	public static long mod = 1000000007;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		long t=sc.nextInt(),n,odd,even;
+		
+		while(t-->0)
+		{
+			n=sc.nextInt();
+			
+			if(n%2==0)
+			{
+				even = (((2+n)*n)>>2)%mod;
+				odd = ((n*n)>>1)%mod;
+				
+				System.out.println((even*odd)%mod);
+			}
+			else
+			{
+				
+			}
+		}
+		sc.close();
+	}
+
+}

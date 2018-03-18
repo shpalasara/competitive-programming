@@ -1,0 +1,50 @@
+#include<stdio.h>
+
+int M=0;
+
+void funt(char data[][M],int x,int y,int l_row,int l_column)
+{
+	if(l_row<=0 || l_column<=0)
+		return;
+	else if(l_row==1 && l_column==1)
+		printf("%c ",data[x][y]);
+	else
+	{
+		int i;
+		for(i=x;i<x+l_row;i++)				//------
+			printf("%c ",data[y][i]);						//-
+		for(i=y+1;i<y+l_column;i++)				//-
+			printf("%c ",data[i][x+l_row-1]);		//-
+		if(l_column>1)							//-----
+		{
+			for(i=x+l_row-2;i>=x;i--)
+				printf("%c ",data[y+l_column-1][i]);
+		}
+		if(l_row>1)
+		{
+			for(i=y+l_column-2;i>y;i--)
+				printf("%c ",data[i][x]);
+		}
+		funt(data,x+1,y+1,l_row-2,l_column-2);
+	}
+}
+
+int main()
+{
+	int N,i,j;
+	scanf("%d %d",&N,&M);
+	char data[N][M],temp;
+	scanf("%c",&temp);
+	for(i=0;i<N;i++)
+	{
+		for(j=0;j<M;j++)
+		{
+			scanf("%c",&data[i][j]);
+			scanf("%c",&temp);
+		}
+	}
+	//printf("fine");
+	funt(data,0,0,M,N);
+	printf("\n");
+	return 0;
+}

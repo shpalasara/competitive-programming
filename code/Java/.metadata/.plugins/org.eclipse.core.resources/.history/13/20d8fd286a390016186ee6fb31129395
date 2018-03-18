@@ -1,0 +1,24 @@
+package round_359_2;
+
+import java.util.Scanner;
+
+public class Robbers_watch {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int n=sc.nextInt(),m=sc.nextInt();
+		
+		
+		sc.close();
+	}
+
+	public static int find_length_base_seven(int data){
+		
+		int up = 7;
+		
+	}
+}

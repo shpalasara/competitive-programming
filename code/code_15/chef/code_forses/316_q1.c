@@ -1,0 +1,37 @@
+#include<stdio.h>
+
+int main()
+{
+	long long int N,M,i,j,max=0,index,temp;
+	scanf("%lld %lld",&N,&M);
+	long long int ans[N];
+	for(i=0;i<N;i++)
+		ans[i]=0;
+	for(i=0;i<M;i++)
+	{
+		max=0;
+		index=0;
+		for(j=0;j<N;j++)
+		{
+			scanf("%lld",&temp);
+			if(temp>max)
+			{
+				max=temp;
+				index=j;
+			}
+		}
+		ans[index]++;
+	}
+	max=0;
+	for(i=0;i<N;i++)
+	{
+		if(ans[i]>max)
+		{
+			max=ans[i];
+			index=i;
+		}
+	}
+	printf("%lld\n",index+1);
+	return 0;
+}
+

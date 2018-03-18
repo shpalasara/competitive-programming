@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class metrix_rotation {
+
+	public static void main(String[] args){
+		
+		Scanner sc = new Scanner(System.in);
+		int N,M,R,r_length,c_length;
+		N=sc.nextInt();
+		M=sc.nextInt();
+		R=sc.nextInt();
+		int[][] metrix = new int[N][M];
+		//boolean[][] info = new boolean[N][M];
+		int[][] output = new int[N][M];
+		for(int i=0;i<M;i++)
+		{
+			for(int j=0;j<N;j++)
+			{
+				metrix[i][j]=sc.nextInt();
+			}
+		}
+		r_length=N;
+		c_length=M;
+		
+		sc.close();
+	}
+}

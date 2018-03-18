@@ -1,0 +1,1 @@
+INDEX VERSION 1.126+C:\eclipse-SDK-4.2.1-win32-x86_64\compititive_prog\code\Java\.metadata\.plugins\org.eclipse.jdt.core

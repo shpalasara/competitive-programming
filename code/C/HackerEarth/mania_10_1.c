@@ -1,0 +1,35 @@
+#include<stdio.h>
+
+int main()
+{
+	int t,x,i,j,five,three,temp_f,temp_t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&x);
+		five=0;
+		three=0;
+		if(x%5==0)
+			five=x;
+
+		for(i=0;i<x;i+=5)
+		{
+			if((x-i)%3==0)
+			{
+				five=i;
+				three=x-i;
+			}
+		}
+		if(five==0 && three==0)
+			printf("-1\n");
+		else
+		{
+			for(i=0;i<three;i++)
+				printf("5");
+			for(i=0;i<five;i++)
+				printf("3");
+			printf("\n");
+		}
+	}
+	return 0;
+}

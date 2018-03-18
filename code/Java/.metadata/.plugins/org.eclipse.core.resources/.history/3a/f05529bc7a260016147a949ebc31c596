@@ -1,0 +1,24 @@
+package round_331_2;
+
+import java.util.Scanner;
+
+public class Wilbur_and_Swimming_Pool {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int n=sc.nextInt();
+		int[][] data = new int[n][2];
+		
+		for(int i=0;i<n;i++)
+		{
+			data[i][0] = sc.nextInt();
+
+		}
+		sc.close();
+	}
+
+}

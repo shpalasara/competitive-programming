@@ -1,0 +1,73 @@
+#include<stdio.h>
+
+int main()
+{
+	int T,N,A,i,temp,chef=0,chief=0;
+	scanf("%d",&T);
+	while(T--)
+	{
+		A=0;
+		scanf("%d",&N);
+		i=N;
+		while(i--)
+		{
+			scanf("%d",&temp);
+			A+=temp-1;
+			/*if(A%2==0)
+			{
+				if((temp-1)%2==0)
+					chef++;
+				else
+					chief++;
+			}
+			else
+			{
+				if((temp-1)%2==0)
+					chief++;
+				else
+					chef++;
+			}
+			A++;*/
+		}
+		if(A%2==0)
+			printf("Chief\n");
+		else
+			printf("Chef\n");
+		/*if(N%2==0)
+		{
+			if((temp-1)%2==0)
+				printf("Chief\n");
+			else
+				printf("Chef\n");
+		}
+		else
+		{
+			if((temp-1)%2==0)
+				printf("Chef\n");
+			else
+				printf("Chief\n");
+		}*/
+		/*if(chef==chief)
+		{
+			if(A%2==0)
+			{
+				if((temp-1)%2==0)
+					printf("Chef\n");
+				else
+					printf("Chief\n");
+			}
+			else
+			{
+				if((temp-1)%2==0)
+					printf("Chief\n");
+				else
+					printf("Chef\n");
+			}
+		}
+		else if(chef>chief)
+			printf("Chef\n");
+		else
+			printf("Chief\n");*/
+	}
+	return 0;
+}

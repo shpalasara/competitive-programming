@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+	long long int N,i,j=1,ans,temp;
+	int freq[10];
+	for(i=0;i<10;i++)
+		freq[i]=0;
+	scanf("%lld",&N);
+	for(i=0;i<N;i++)
+		j*=10;
+	i=sqrt(j-1);
+	ans=i*i;
+	temp=ans;
+	while(ans!=0)
+	{
+		
+		if(freq[ans%10]==0)
+		{
+			freq[ans%10]++;
+			ans/=10;
+		}
+		else//(ans%10==0)
+		{
+			i--;
+			ans=i*i;
+			temp=ans;
+			for(j=0;j<10;j++)
+				freq[j]=0;
+		}
+		
+	}
+	printf("%lld\n",temp);
+	return 0;
+}

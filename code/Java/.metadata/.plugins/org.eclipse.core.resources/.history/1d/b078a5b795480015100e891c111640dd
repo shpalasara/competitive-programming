@@ -1,0 +1,38 @@
+import java.util.*;
+
+public class daiict_q1 {
+
+	public static void main(String[] args){
+		
+		Scanner sc = new Scanner(System.in);
+		int N= sc.nextInt(),p,q,ans=0,temp;
+		//HashSet<Integer> set = new HashSet<>();
+		HashMap<Integer,Integer> set = new HashMap<Integer,Integer>();
+		//HashSet<Integer> set_new = new HashSet<>();
+		for(int i=0;i<N;i++)
+		{
+			p=sc.nextInt();
+			q=sc.nextInt();
+			if(p!=q)
+			{
+				if(set.containsKey(q) && (temp=set.get(q))>0)
+				{
+					//temp=set.get(q);
+					if(temp>1)
+						set.put(q, temp-1);
+					else
+						set.put(q,0);
+				}
+				else
+					ans++;
+				
+				if(set.containsKey(p) && (temp=set.get(p))>0)
+					set.put(p, temp+1);
+				else
+					set.put(p, 1);
+			}
+		}
+		System.out.println(ans);
+		sc.close();
+	}
+}

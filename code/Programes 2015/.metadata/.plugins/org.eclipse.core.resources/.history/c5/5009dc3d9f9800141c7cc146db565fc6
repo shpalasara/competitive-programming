@@ -1,0 +1,99 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt();
+		int N,Q,L,R;
+		while(T>0)
+		{
+			N = sc.nextInt();
+			int[] A = new int[N];
+			int[] data_s = new int[N];
+			int[] data_e = new int[N];
+			Q = sc.nextInt();
+			//int L,R;
+			for(int i=0;i<N;i++)
+				A[i] = sc.nextInt();
+			
+			data_s[0] = A[0];
+			data_e[0] = A[N-1];
+			for(int i=1;i<N;i++)
+			{
+				data_s[i] = GCD(data_s[i-1],A[i]);
+				data_e[i] = GCD(data_e[i-1],A[N-i-1]);
+			}
+			
+			for(int i=0;i<Q;i++)
+			{
+				int temp1,temp2;
+				L = sc.nextInt();
+				R = sc.nextInt();
+				if(L<2)
+					temp1 = data_e[N-R-1]; 
+				else
+					temp1 = data_s[L-2];
+				if(R>=N)
+					temp2 = data_s[L-2];
+				else
+					temp2 = data_e[N-R-1];
+				temp1 = GCD(temp1,temp2);
+				
+				/*while(j<N)
+				{
+					if(j==L-1)
+						j=R;
+					if(j<L-1 || j>R-1 && j<N)
+					{
+						if(count==0)
+						{
+							gcd = A[j];
+							count++;
+						}
+						else
+							gcd = GCD(gcd,A[j]);
+					}
+					j++;
+				}*/
+				System.out.println(temp1);
+			}
+			T--;
+		}
+		sc.close();
+	}
+	
+	public static int GCD(int i,int j){
+		
+		if(i==j)
+			return i;
+		int temp;
+		if(i<j)
+		{
+			while(i!=0)
+			{
+				temp = i;
+				i =j%i;
+				j = temp;
+			}
+			return j;
+		}
+		else
+		{
+			while(j!=0)
+			{
+				temp = j;
+				j =i%j;
+				i = temp;
+			}
+			return i;
+		}
+		//if(i==j)
+			//return i;
+		//else if(i<j)
+			//return(GCD(i,j-i));
+		//else
+			//return(GCD(i-j,j));
+	}
+}

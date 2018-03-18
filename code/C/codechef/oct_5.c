@@ -1,0 +1,39 @@
+#include<stdio.h>
+
+int main()
+{
+	long long i,T,N,length=5000001,m=2,n=1;
+	//int check[5000001]={0};
+	char check[5000001];
+
+	for(i=0;i<length;i++)
+		check[i]='0';
+
+	while(m*m+n*n<length)
+	{
+		n=1;
+		while(m>n && m*m+n*n<length)
+		{
+			check[m*m+n*n]='1';
+			n++;
+		}
+		m++;
+	}
+
+	scanf("%lld",&T);
+	while(T-->0)
+	{
+		scanf("%lld",&N);
+		if(check[N]=='1')
+			printf("YES\n");
+		else
+			printf("NO\n");
+	}
+	/*for(i=0;i<100;i++)
+	{
+		if(check[i]=='1')
+			printf("%lld ",i);
+	}*/
+	return 0;
+}
+

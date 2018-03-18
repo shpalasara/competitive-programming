@@ -1,0 +1,94 @@
+#include<stdio.h>
+#include<math.h>
+
+int remain_power;
+
+long long int power_mod(long long int x,int m,int count)
+{
+	if(2*count<=remain_power)
+	{
+		long long int ans=power_mod((x*x)%m,m,2*count);
+		if(count<=remain_power)
+		{
+			remain_power-=count;
+			return (ans*x)%m;
+		}
+		else
+			return ans;
+	}
+	else
+	{
+		remain_power-=count;
+		return x;
+	}
+}
+
+int main()
+{
+	int T,m;
+	long long int n,a,b,c,ans,max;
+	scanf("%d",&T);
+	while(T--)
+	{
+		scanf("%lld %d %lld %lld %lld",&n,&m,&a,&b,&c);
+		if(m==1 || n>=m)
+			ans=0;
+		else if(n==1)
+			ans=1;
+		else
+		{
+			ans=1;
+			for(a=2;a<=sqrt(m);a++)
+			{
+				if(m%a==0)
+				{
+					max=m/a;
+					if(max<=n)
+					{
+						ans=0;break;
+					}
+				}
+			}
+			if(ans!=0)
+			{
+				for(a=2;a<=n && ans!=0;a++)
+				{
+					remain_power=a;
+					ans=(ans*power_mod(a,m,1))%m;
+				}
+			}
+		}
+		printf("%lld\n",ans);
+	}
+	return 0;
+}
+
+
+
+/*
+int i,x=(data*data)%m,temp;
+	x=(x*x)%m;
+	long long int ans;
+	if(data%4==0)
+	{
+		ans=x;
+		temp=1;
+	}
+	else if(data%4==1)
+	{
+		ans=data%m;temp=0;
+	}
+	else if(data%4==2)
+	{
+		ans=((data%m)*(data%m))%m;temp=0;
+	}	
+	else
+	{
+		ans=((data%m)*(data%m)*(data%m))%m;temp=0;
+	}		
+	for(i=temp;i<data/4 && ans!=0;i++)
+	{
+		ans = (ans*x)%m;
+	}
+	return (ans%m);
+*/

@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+int main()
+{
+	int N,M,counter,ans=0;
+	scanf("%d %d",&N,&M);
+	if((N*(N+1))/2<M)
+		printf("-1\n",N);
+	else if(N>=M)
+		printf("1\n");
+	else
+	{
+		counter=0;
+		while(M>0)
+		{
+			if(N-counter<M)
+				M-=N-counter;
+			else
+				M=0;
+			ans++;
+			counter++;
+		}
+		printf("%d\n",ans);	
+	}
+	
+	return 0;
+}

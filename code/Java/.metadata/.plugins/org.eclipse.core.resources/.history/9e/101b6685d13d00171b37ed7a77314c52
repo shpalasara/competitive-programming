@@ -1,0 +1,30 @@
+package SnackDown_17;
+
+import java.util.Scanner;
+
+public class SNAKPROC {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int r = Integer.parseInt(sc.nextLine()),l;
+		String str;
+		
+		while(r-->0)
+		{
+			l = Integer.parseInt(sc.nextLine());
+			str = sc.nextLine();
+			int temp;
+			
+			for(int i=0;i<l;i++)
+			{
+				
+			}
+		}
+		sc.close();
+	}
+
+}

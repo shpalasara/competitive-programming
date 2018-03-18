@@ -1,0 +1,17 @@
+package round_359_2;
+
+import java.util.Scanner;
+
+public class Free_Ice_Cream {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		long n=sc.nextLong(),x=sc.nextLong();
+		sc.close();
+	}
+
+}

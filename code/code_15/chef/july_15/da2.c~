@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+	long long int T,a,b,c,k,temp,x;			//a*x*x+b*x+c>=k
+	scanf("%lld",&T);
+	while(T--)
+	{
+		scanf("%lld %lld %lld %lld",&a,&b,&c,&k);
+		temp = sqrt(k-c)-b;
+		temp/=a;
+		x=temp;
+		if(x<=0)
+			x=1;
+		while(1)
+		{
+			if(a*x*x+b*x+c>=k)
+			{
+				printf("%lld\n",x);
+				break;
+			}
+			x++;
+		}
+	}
+
+	return 0;
+}

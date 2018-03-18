@@ -1,0 +1,323 @@
+//-----------------------------------------Time measure------------------------------------------//
+
+#include<stdio.h>
+
+double abst(double x)
+{
+	if(x>0)
+		return x;
+	return -x;
+}
+
+int main()
+{
+	int T,i,j,temp_i;
+	double A,m1,m2,m11,m12,m21,m22,h;
+	double check=1.0/120;
+	int chek[12];
+	scanf("%d",&T);
+	while(T--) 
+	{
+		for(i=0;i<12;i++)
+			chek[i]=0;
+
+		scanf("%lf",&A);
+		for(i=0;i<12;i++)
+		{
+			m1=(2*A-60*i)/11;
+			m2=(60*i-2*A)/11;
+			m11=m1+1;
+			m12=m1-1;
+			m21=m2+1;
+			m22=m2-2;
+			printf("1fine %lf %lf %d %d -----  %lf %lf\n",m1,m2,(int)m1,(int)m2,abst(60*i-(int)m1*11)-2*A,abst(60*i-(int)m2*11)-2*A);			
+			//printf("%lf\n",check);
+
+			if(/*m1>=0 && */abst(60*i-(int)m1*11)-2*A<2*check && abst(60*i-(int)m1*11)-2*A>-2*check)
+			{
+				if((int)abst(m1)<60)
+				{
+					if(m1>=0)
+					{
+						printf("%02d:%02d\n",i,(int)m1);
+						chek[i]=1;
+					}
+					else 
+					{
+						temp_i=i+(int)m1/60-1;
+						m1+=((int)m1/60+1)*60;
+						if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m1*11)-2*A<2*check && abst(60*temp_i-(int)m1*11)-2*A>-2*check)
+						{
+							printf("%02d:%02d\n",temp_i,(int)m1);
+							chek[temp_i]=1;
+						}
+					}
+				}
+			}
+			else if(/*m1>=0 && */abst(60*i-(int)m11*11)-2*A<2*check && abst(60*i-(int)m11*11)-2*A>-2*check)
+			{
+				if((int)abst(m11)<60)
+				{
+					if(m11>=0)
+					{
+						printf("%02d:%02d\n",i,(int)m11);
+						chek[i]=1;
+					}
+					else 
+					{
+						temp_i=i+(int)m11/60-1;
+						m11+=((int)m11/60+1)*60;
+						if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m11*11)-2*A<2*check && abst(60*temp_i-(int)m11*11)-2*A>-2*check)
+						{
+							printf("%02d:%02d\n",temp_i,(int)m11);
+							chek[temp_i]=1;
+						}
+					}
+				}
+			}
+			else if(/*m1>=0 && */abst(60*i-(int)m12*11)-2*A<2*check && abst(60*i-(int)m12*11)-2*A>-2*check)
+			{
+				if((int)abst(m12)<60)
+				{
+					if(m12>=0)
+					{
+						printf("%02d:%02d\n",i,(int)m12);
+						chek[i]=1;
+					}
+					else 
+					{
+						temp_i=i+(int)m12/60-1;
+						m12+=((int)m12/60+1)*60;
+						if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m12*11)-2*A<2*check && abst(60*temp_i-(int)m12*11)-2*A>-2*check)
+						{
+							printf("%02d:%02d\n",temp_i,(int)m12);
+							chek[temp_i]=1;
+						}
+					}
+				}
+			}
+			if(m1!=m2 &&/*m2>=0 && */abst(60*i-(int)m2*11)-2*A<2*check && abst(60*i-(int)m2*11)-2*A>-2*check)
+			{
+				if((int)abst(m2)<60)
+				{
+					if(m2>=0)
+					{
+						printf("%02d:%02d\n",i,(int)m2);
+						chek[i]=1;
+					}
+					else 
+					{
+						temp_i=i+(int)m2/60-1;
+						m2+=((int)m2/60+1)*60;
+						if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m2*11)-2*A<2*check && abst(60*temp_i-(int)m2*11)-2*A>-2*check)
+						{
+							printf("%02d:%02d\n",temp_i,(int)m2);
+							chek[temp_i]=1;
+						}
+					}
+				}
+			}
+			else if(/*m1>=0 && */abst(60*i-(int)m21*11)-2*A<2*check && abst(60*i-(int)m21*11)-2*A>-2*check)
+			{
+				if((int)abst(m21)<60)
+				{
+					if(m21>=0)
+					{
+						printf("%02d:%02d\n",i,(int)m21);
+						chek[i]=1;
+					}
+					else 
+					{
+						temp_i=i+(int)m21/60-1;
+						m21+=((int)m21/60+1)*60;
+						if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m21*11)-2*A<2*check && abst(60*temp_i-(int)m21*11)-2*A>-2*check)
+						{
+							printf("%02d:%02d\n",temp_i,(int)m21);
+							chek[temp_i]=1;
+						}
+					}
+				}
+			}
+			else if(/*m1>=0 && */abst(60*i-(int)m22*11)-2*A<2*check && abst(60*i-(int)m22*11)-2*A>-2*check)
+			{
+				if((int)abst(m22)<60)
+				{
+					if(m22>=0)
+					{
+						printf("%02d:%02d\n",i,(int)m22);
+						chek[i]=1;
+					}
+					else 
+					{
+						temp_i=i+(int)m22/60-1;
+						m22+=((int)m22/60+1)*60;
+						if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m22*11)-2*A<2*check && abst(60*temp_i-(int)m22*11)-2*A>-2*check)
+						{
+							printf("%02d:%02d\n",temp_i,(int)m22);
+							chek[temp_i]=1;
+						}
+					}
+				}
+			}
+			if(A!=180)
+			{
+				//printf("hi\n");
+				m1=(2*(360-A)-60*i)/11;
+				m2=(60*i-2*(360-A))/11;
+				m11=m1+1;
+				m12=m1-1;
+				m21=m2+1;
+				m22=m2-2;
+
+				printf("2fine %lf %lf %d %d -----  %lf %lf\n",m1,m2,(int)m1,(int)m2,abst(60*i-(int)m1*11)-2*(360-A),abst(60*i-(int)m2*11)-2*(360-A));					
+				//m1>=0 &&
+				if(abst(60*i-(int)m1*11)-2*(360-A)<2*check && abst(60*i-(int)m1*11)-2*(360-A)>-2*check)
+				{
+					if((int)abst(m1)<60)
+					{
+						if(m1>=0)
+						{
+							printf("%02d:%02d\n",i,(int)m1);
+							chek[i]=1;
+						}
+						else 
+						{
+							temp_i=i+(int)m1/60-1;
+							m1+=((int)m1/60+1)*60;
+							if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m1*11)-2*(360-A)<2*check && abst(60*temp_i-(int)m1*11)-2*(360-A)>-2*check)
+							{
+								printf("%02d:%02d\n",temp_i,(int)m1);
+								chek[temp_i]=1;
+							}
+						}
+					}
+				}
+				else if(abst(60*i-(int)m11*11)-2*(360-A)<2*check && abst(60*i-(int)m11*11)-2*(360-A)>-2*check)
+				{
+					if((int)abst(m11)<60)
+					{
+						if(m11>=0)
+						{
+							printf("%02d:%02d\n",i,(int)m11);
+							chek[i]=1;
+						}
+						else 
+						{
+							temp_i=i+(int)m11/60-1;
+							m11+=((int)m11/60+1)*60;
+							if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m11*11)-2*(360-A)<2*check && abst(60*temp_i-(int)m11*11)-2*(360-A)>-2*check)
+							{
+								printf("%02d:%02d\n",temp_i,(int)m11);
+								chek[temp_i]=1;
+							}
+						}
+					}
+				}
+				else if(abst(60*i-(int)m12*11)-2*(360-A)<2*check && abst(60*i-(int)m12*11)-2*(360-A)>-2*check)
+				{
+					if((int)abst(m12)<60)
+					{
+						if(m12>=0)
+						{
+							printf("%02d:%02d\n",i,(int)m12);
+							chek[i]=1;
+						}
+						else 
+						{
+							temp_i=i+(int)m12/60-1;
+							m12+=((int)m12/60+1)*60;
+							if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m12*11)-2*(360-A)<2*check && abst(60*temp_i-(int)m12*11)-2*(360-A)>-2*check)
+							{
+								printf("%02d:%02d\n",temp_i,(int)m12);
+								chek[temp_i]=1;
+							}
+						}
+					}
+				}
+				//m2>=0 && 
+				if(m1!=m2 && abst(60*i-(int)m2*11)-2*(360-A)<2*check && abst(60*i-(int)m2*11)-2*(360-A)>-2*check)
+				{
+					if((int)abst(m2)<60)
+					{
+						if(m2>=0)
+						{
+							printf("%02d:%02d\n",i,(int)m2);
+							chek[i]=1;
+						}
+						else 
+						{
+							temp_i=i+(int)m2/60-1;
+							m2+=((int)m2/60+1)*60;
+							if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m2*11)-2*(360-A)<2*check && abst(60*temp_i-(int)m2*11)-2*(360-A)>-2*check)
+							{
+								printf("%02d:%02d\n",temp_i,(int)m2);
+								chek[temp_i]=1;
+							}
+						}
+					}
+				}
+				else if(abst(60*i-(int)m21*11)-2*(360-A)<2*check && abst(60*i-(int)m21*11)-2*(360-A)>-2*check)
+				{
+					if((int)abst(m21)<60)
+					{
+						if(m21>=0)
+						{
+							printf("%02d:%02d\n",i,(int)m21);
+							chek[i]=1;
+						}
+						else 
+						{
+							temp_i=i+(int)m21/60-1;
+							m21+=((int)m21/60+1)*60;
+							if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m21*11)-2*(360-A)<2*check && abst(60*temp_i-(int)m21*11)-2*(360-A)>-2*check)
+							{
+								printf("%02d:%02d\n",temp_i,(int)m21);
+								chek[temp_i]=1;
+							}
+						}
+					}
+				}
+				else if(abst(60*i-(int)m22*11)-2*(360-A)<2*check && abst(60*i-(int)m22*11)-2*(360-A)>-2*check)
+				{
+					if((int)abst(m22)<60)
+					{
+						if(m22>=0)
+						{
+							printf("%02d:%02d\n",i,(int)m22);
+							chek[i]=1;
+						}
+						else 
+						{
+							temp_i=i+(int)m22/60-1;
+							m22+=((int)m22/60+1)*60;
+							if(temp_i>=0 && chek[temp_i]==0 && abst(60*temp_i-(int)m22*11)-2*(360-A)<2*check && abst(60*temp_i-(int)m22*11)-2*(360-A)>-2*check)
+							{
+								printf("%02d:%02d\n",temp_i,(int)m22);
+								chek[temp_i]=1;
+							}
+						}
+					}
+				}
+			}
+/*
+			m1=(2*(180+A)-60*i)/11;
+			m2=(60*i-2*(180+A))/11;
+			
+			//printf("1fine %lf %lf %d %d -----%lf\n",m1,m2,(int)m1,(int)m2,(double)abst(60*i-(int)m1*11)/2-A-check);			
+			//printf("%lf\n",check);
+
+			if(m1>=0 && abst(60*i-(int)m1*11)-2*(180+A)<2*check && abst(60*i-(int)m1*11)-2*(180+A)>-2*check)
+			{
+				if((int)m1!=60)
+					printf("%02d:%02d\n",i,(int)m1);
+			}
+			else if(m2>=0 && abst(60*i-(int)m2*11)-2*(180+A)<2*check && abst(60*i-(int)m2*11)-2*(180+A)>-2*check)
+			{
+				if((int)m2!=60)
+					printf("%02d:%02d\n",i,(int)m2);
+			}
+*/
+		}
+	}
+	return 0;
+}

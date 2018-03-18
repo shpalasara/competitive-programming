@@ -1,0 +1,187 @@
+package hack_101;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+
+public class Larry_Array_March_2016 {
+
+	public static void main(String[] ags){
+		
+		FasterScanner sc = new FasterScanner();
+		int t=sc.nextInt(),n,temp,ans;
+		
+		while(t-->0)
+		{
+			ans=0;
+			n=sc.nextInt();
+			int[] data = new int[n];
+			int[] index = new int[n];
+			
+			for(int i=0;i<n;i++)
+			{
+				data[i] = sc.nextInt();
+				index[data[i]-1] = i;
+			}
+			
+			for(int i=0;i<n-2;i++)
+			{
+				if(index[i]!=i)
+				{
+					if((index[i]-i)%2==0)
+					{
+						for(int j=index[i];j>i;j--)
+						{
+							data[j]=data[j-1];
+							index[data[j-1]-1]++;
+						}
+						data[i]=i+1;
+						index[i]=i;
+					}
+					else
+					{
+						for(int j=index[i];j>i+1;j--)
+						{
+							//System.out.println("he");
+							data[j]=data[j-1];
+							index[data[j-1]-1]++;
+						}
+						//System.out.println("me");
+						//temp = i;
+						index[data[i]-1]+=2;
+						index[data[i+2]-1]-=1;
+						index[i]=i;
+						data[i+1]=data[i+2];
+						data[i+2]=data[i];
+						data[i]=i+1;
+						
+					}
+				}
+			}
+			
+			if(index[n-1]==n-1)
+				System.out.println("YES");
+			else
+				System.out.println("NO");
+		}
+	}
+	
+	static class FasterScanner {
+		 
+        private byte[] buf = new byte[8192];
+        private int curChar;
+        private int numChars;
+ 
+        public int read() {
+            if (numChars == -1) {
+                throw new InputMismatchException();
+            }
+            if (curChar >= numChars) {
+                curChar = 0;
+                try {
+                    numChars = System.in.read(buf);
+                } catch (IOException e) {
+                    throw new InputMismatchException();
+                }
+                if (numChars <= 0) {
+                    return -1;
+                }
+            }
+            return buf[curChar++];
+        }
+ 
+        public String nextLine() {
+            int c = read();
+            while (isSpaceChar(c)) {
+                c = read();
+            }
+            StringBuilder res = new StringBuilder();
+            do {
+                res.appendCodePoint(c);
+                c = read();
+            } while (!isEndOfLine(c));
+            return res.toString();
+        }
+ 
+        public String nextString() {
+            int c = read();
+            while (isSpaceChar(c)) {
+                c = read();
+            }
+            StringBuilder res = new StringBuilder();
+            do {
+                res.appendCodePoint(c);
+                c = read();
+            } while (!isSpaceChar(c));
+            return res.toString();
+        }
+ 
+        public long nextLong() {
+            int c = read();
+            while (isSpaceChar(c)) {
+                c = read();
+            }
+            int sgn = 1;
+            if (c == '-') {
+                sgn = -1;
+                c = read();
+            }
+            long res = 0;
+            do {
+                if (c < '0' || c > '9') {
+                    throw new InputMismatchException();
+                }
+                res *= 10;
+                res += c - '0';
+                c = read();
+            } while (!isSpaceChar(c));
+            return res * sgn;
+        }
+ 
+        public int nextInt() {
+            int c = read();
+            while (isSpaceChar(c)) {
+                c = read();
+            }
+            int sgn = 1;
+            if (c == '-') {
+                sgn = -1;
+                c = read();
+            }
+            int res = 0;
+            do {
+                if (c < '0' || c > '9') {
+                    throw new InputMismatchException();
+                }
+                res *= 10;
+                res += c - '0';
+                c = read();
+            } while (!isSpaceChar(c));
+            return res * sgn;
+        }
+ 
+        public int[] nextIntArray(int n) {
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = nextInt();
+            }
+            return arr;
+        }
+ 
+        public long[] nextLongArray(int n) {
+            long[] arr = new long[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = nextLong();
+            }
+            return arr;
+        }
+ 
+        private boolean isSpaceChar(int c) {
+            return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
+        }
+ 
+        private boolean isEndOfLine(int c) {
+            return c == '\n' || c == '\r' || c == -1;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+package Week_Of_Code_20;
+
+public class Divisible_Sum_Pairs {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

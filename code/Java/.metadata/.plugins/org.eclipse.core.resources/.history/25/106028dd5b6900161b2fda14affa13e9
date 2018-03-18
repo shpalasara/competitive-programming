@@ -1,0 +1,27 @@
+package dp;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Fibonacci_Modified {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int t1 = sc.nextInt(),t2 = sc.nextInt(),n = sc.nextInt();
+		
+		BigInteger a1,a2,a3;
+		
+		a1 = new BigInteger(""+t1);
+		a2 = new BigInteger(""+t2);
+		a3 = a2;
+		
+		n-=2;
+		while()
+		sc.close();
+	}
+
+}

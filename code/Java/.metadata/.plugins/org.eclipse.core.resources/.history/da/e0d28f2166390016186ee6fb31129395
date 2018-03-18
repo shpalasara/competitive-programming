@@ -1,0 +1,47 @@
+package round_359_2;
+
+import java.util.Scanner;
+
+public class Little_Robber_Girl_Zoo {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int n=sc.nextInt(),max,index;
+		int[] data = new int[n];
+		
+		for(int i=0;i<n;i++)
+			data[i] = sc.nextInt();
+		
+		for(int i=0;i<n;i++)
+		{
+			max = 0;
+			index=-1;
+			
+			for(int j=0;j<n-i;j++)
+			{
+				if(data[i]>max)
+				{
+					max = data[i];
+					index = j;
+				}
+			}
+			
+			for(int )
+		}
+		sc.close();
+	}
+	
+	public static void swap(int[] data,i,j){
+		
+		int temp = data[i];
+		data[i] = data[j];
+		data[j] = temp;
+		
+	} 
+	
+
+}

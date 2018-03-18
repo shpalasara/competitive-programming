@@ -1,0 +1,13 @@
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+	long long int N,i,j=1;
+	scanf("%d",&N);
+	for(i=0;i<N;i++)
+		j*=10;
+	i=sqrt(j-1);
+	printf("%lld\n",i);
+	return 0;
+}

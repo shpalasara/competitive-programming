@@ -1,0 +1,290 @@
+#include<stdio.h>
+
+long long int arr[1000000],L[1000000],L1[1000000],R[1000000],R1[1000000];
+long long int freq[1000000];
+char c_ans[1000001];
+int N;
+
+struct stack {
+   int s[1000000];
+   int top;
+} st;
+
+void push(int item) {
+   st.top++;
+   st.s[st.top] = item;
+}
+ 
+int stempty() {
+   if (st.top == -1)
+      return 1;
+   else
+      return 0;
+}
+ 
+int pop() {
+   int item;
+   item = st.s[st.top];
+   st.top--;
+   return (item);
+}
+
+int ret_top(){
+	return (st.s[st.top]);
+}
+
+ 
+// Utility function to find minimum of two integers
+int min(int x, int y) { return (x<y)? x :y; }
+ 
+ 
+void mergeSort(long long int arr[],long long int freq[], int n)
+{
+   int curr_size;  
+   int left_start; 
+ 
+   for (curr_size=1; curr_size<=n-1; curr_size = 2*curr_size)
+   {
+       for (left_start=0; left_start<n-1; left_start += 2*curr_size)
+       {
+           int mid = left_start + curr_size - 1;
+ 
+           int right_end = min(left_start + 2*curr_size - 1, n-1);
+           merge(arr, freq, left_start, mid, right_end);
+       }
+   }
+}
+void merge(long long int arr[],long long int freq[], int l, int m, int r)
+{
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 =  r - m;
+ 
+    //long long int L[n1], R[n2] , L1[n1], R1[n2];
+ 
+    for (i = 0; i < n1; i++)
+    {
+        L[i] = arr[l + i];
+	L1[i] = freq[l+i];
+    }
+    for (j = 0; j < n2; j++)
+    {
+        R[j] = arr[m + 1+ j];
+	R1[j] = freq[m + 1+ j];
+    }
+ 
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
+            arr[k] = L[i];
+	    freq[k] = L1[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+	    freq[k] = R1[j];
+            j++;
+        }
+        k++;
+    }
+ 
+    while (i < n1)
+    {
+        arr[k] = L[i];
+	freq[k] = L1[i];
+        i++;
+        k++;
+    }
+ 
+    while (j < n2)
+    {
+        arr[k] = R[j];
+	freq[k] = R1[j];
+        j++;
+        k++;
+    }
+}
+
+/*void quicksort(long long int x[N],long long int index[N],int first,int last){
+    int pivot,j,i;
+    long long int temp;
+
+     if(first<last){
+         pivot=first;
+         i=first;
+         j=last;
+
+         while(i<j){
+             while(x[i]<=x[pivot] && i<last)
+                 i++;
+             while(x[j]>x[pivot])
+                 j--;
+             if(i<j){
+                 temp=x[i];
+                  x[i]=x[j];
+                  x[j]=temp;
+		temp=index[i];
+                  index[i]=index[j];
+                  index[j]=temp;
+             }
+         }
+
+         temp=x[pivot];
+         x[pivot]=x[j];
+         x[j]=temp;
+	 temp=index[pivot];
+         index[pivot]=index[j];
+         index[j]=temp;
+         quicksort(x,index,first,j-1);
+         quicksort(x,index,j+1,last);
+    }
+}*/
+
+int main()
+{
+	int M,first,last,middle,i,j,temp;
+	long long int K,ans;
+	char sign[5],_first[5],_temp[5];
+	st.top = -1;
+	scanf("%d %d",&N,&M);
+	scanf("%lld",&arr[0]);
+	push(0);
+	freq[0]=1;
+
+	for(i=1;i<N;i++)
+	{
+		scanf("%lld",&arr[i]);
+		while(!stempty() && arr[ret_top()]<=arr[i])
+			pop();
+		freq[i] = (stempty())? (i+1) : (i-ret_top());
+		push(i);
+	}
+	st.top=-1;
+	push(N-1);
+	for(i=N-2;i>=0;i--)
+	{
+		while(!stempty() && arr[ret_top()]<arr[i])
+			pop();
+		if((stempty())? (N-1-i) : (ret_top()-i-1))
+			freq[i] += freq[i]*((stempty())? (N-1-i) : (ret_top()-i-1));
+		push(i);
+	}
+	//quicksort(arr,freq,0,N-1);
+	mergeSort(arr,freq, N);
+
+	temp=0;
+	for(i=1;i<N;i++)
+	{	
+		if(arr[i]==arr[temp])
+		{
+			freq[temp]=freq[temp]+freq[i];
+			freq[i]=0;
+		}
+		else
+		{	
+			temp++;	
+			arr[temp]=arr[i];
+			if(temp==i)
+				freq[temp]=freq[temp]+freq[temp-1];
+			else
+				freq[temp]=freq[i]+freq[temp-1];
+			//freq[temp]+=freq[temp-1];				//new line added
+										//temp+1 is the size of the array 
+		}
+	}
+	for(i=0;i<M;i++)
+	{
+		scanf("%s",sign);
+		scanf("%lld",&K);
+		scanf("%s",_first);
+
+		ans=0;
+		first=0;
+		last=temp;
+		middle=last/2;
+
+		if(sign[0]=='=')
+		{
+			if(K>arr[temp] || K<arr[0])
+				ans=0;
+			else
+			{
+				while (first <= last) 
+				{
+		     			if (arr[middle] < K)
+			 			first = middle + 1;    
+		      			else if (arr[middle] == K) {
+						ans=(freq[middle]-freq[middle-1])%2;
+			 			break;
+		      			}
+		      			else
+			 			last = middle - 1;
+		 
+		      			middle = (first + last)/2;
+		   		}
+			}
+		}
+		else if(sign[0]=='>')
+		{
+			if(K>=arr[temp])
+				ans=0;
+			else if(K<arr[0])
+				ans=freq[temp];
+			else
+			{
+				while(first<=last)
+				{
+					if(arr[middle]>K && arr[middle-1]<=K)
+					{
+						ans=(freq[temp]-freq[middle-1])%2;
+						break;
+					}
+					else if(/*arr[middle]>K && */arr[middle-1]>K)
+						last=middle-1;
+					else
+						first=middle+1;
+
+		      			middle = (first + last)/2;
+				}
+			}
+		}
+		else
+		{
+			if(K>arr[temp])
+				ans=freq[temp];
+			else if(K<=arr[0])
+				ans=0;
+			else
+			{
+				while(first<=last)
+				{
+					if(arr[middle]<K && arr[middle+1]>=K)
+					{
+						ans=freq[middle];
+						break;
+					}
+					else if(arr[middle]>=K)
+						last=middle-1;
+					else
+						first=middle+1;
+
+		      			middle = (first + last)/2;
+				}	
+			}
+		}
+
+		if(_first[0]=='D')
+			c_ans[i]='C'+(ans%2);
+		else
+			c_ans[i]='D'-(ans%2);
+	}
+	c_ans[i]='\0';
+	
+	printf("%s\n",c_ans);	
+	return 0;
+}

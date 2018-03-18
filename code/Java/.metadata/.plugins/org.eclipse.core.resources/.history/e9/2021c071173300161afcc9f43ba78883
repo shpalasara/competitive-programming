@@ -1,0 +1,23 @@
+package placement_drive;
+
+import java.util.Scanner;
+
+public class T01_Q01 {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int t=sc.nextInt(),n,a1,a2,ans;
+		
+		while(t-->0)
+		{
+			
+		}
+
+		sc.close();
+	}
+
+}

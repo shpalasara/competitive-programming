@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt();
+		int N,Q;
+		while(T>0)
+		{
+			N = sc.nextInt();
+			int[] A = new int[N];
+			Q = sc.nextInt();
+			int L,R;
+			for(int i=0;i<N;i++)
+				A[i] = sc.nextInt();
+			
+			for(int i=0;i<Q;i++)
+			{
+				L = sc.nextInt();
+				R = sc.nextInt();
+				int j=0,gcd,count=0;
+				
+				while(j<N)
+				{
+					if(A[j]<L || A[j]>R)
+					{
+						if(count==0)
+						{
+							count++;
+							gcd = A[j];
+						}
+						gcd = this.GCD(gcd,A[j]);
+					}
+					
+					j++;
+				}
+			}
+			T--;
+		}
+		sc.close();
+	}
+	
+	public int GCD(int i,int j){
+		
+		if(i==j)
+			return i;
+		else if(i<j)
+			return(GCD(i,j-i));
+		else
+			return(GCD(i-j,j));
+	}
+}

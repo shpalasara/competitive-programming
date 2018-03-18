@@ -1,0 +1,20 @@
+package Week_Of_Code_20;
+
+import java.util.Scanner;
+
+public class Divisible_Sum_Pairs {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		int n=sc.nextInt(),k=sc.nextInt();
+		int[] data = new int[n];
+		
+		for(int i=0;i<n;i++)
+			data[i]=sc.nextInt();
+	}
+}

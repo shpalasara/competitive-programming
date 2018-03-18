@@ -1,0 +1,37 @@
+#include<stdio.h>
+
+int main()
+{
+	int T,N,i,correct;
+	long long int temp,max;
+	char ch;
+	scanf("%d",&T);
+	while(T--)
+	{
+		correct=0;
+		max=0;
+		scanf("%d",&N);
+		char str[N+10],ans[N+10];
+		scanf("%s %s",str,ans);
+
+		//printf("\nstr1 %s\n",str);
+		//printf("\nstr2 %s\n",ans);
+
+		for(i=0;i<N;i++)
+		{
+			if(str[i]==ans[i])
+				correct++;
+		}
+		
+		for(i=0;i<N+1;i++)
+		{
+			scanf("%lld",&temp);
+			if(i<=correct && max<temp)
+				max=temp;
+		}		
+		if(N==correct)
+			max=temp;
+		printf("%lld\n",max);
+	}
+	return 0;
+}
